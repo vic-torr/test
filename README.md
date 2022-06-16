@@ -1,6 +1,8 @@
 1. Linked list reversal
 You need to return a list with the elements in the reverse order. Describe an algorithm, for the generic case of a list containing N elements that would do such work in a linear time complexity.
-```
+
+
+**Answer:**
 As it is not required to preserve the original list, it reverts and doesn't preserve the original one.
 The algorithm consists of 3 pointers that separates the set of nodes in 3 partitions:
  - list: points to the beginning of forward direction list partition
@@ -10,7 +12,6 @@ The algorithm consists of 3 pointers that separates the set of nodes in 3 partit
 The algorithm works as iteratively removes a node from forward direction partition and inserts
 on reverted order partition, then iterating over N nodes. For each node it swaps its
 partition and updates the pointers of each partition.
-```
 ```mermaid
 flowchart TD
 
@@ -63,15 +64,14 @@ Node *list_reversal(Node *linked_list) {
 
 ```
 ---
-1.2. You are developing a function to find an element in an array. The number of elements of the array is unknown and 
+1.2. You are developing a function to find an element in an array. The number of elements of the array is unknown and
 the elements are sorted. If you access a position out of the bounds of the array, an exception is thrown. Describe an efficient algorithm to search an element.
 
 
 
-```
+**Answer:**
 If it allowed to catch exceptions, then is possible to implement an
 exponential search to find an element greater than following with a binary search:
-```
 
 ```
 Let array Array of unknown number of n elements
@@ -79,8 +79,8 @@ Let x the element to be found
 
 let unbounded_exponential_search <- Array, x
   Let index i of element x to be find
-  let index half be 1 
-  let index double be 1 
+  let index half be 1
+  let index double be 1
 
   try:
     while x>A[double]:
@@ -88,7 +88,7 @@ let unbounded_exponential_search <- Array, x
         double <- 2*double
   except:
     new_array <- address(Array[half])
-    return unbounded_exponential_search(new_array, x) 
+    return unbounded_exponential_search(new_array, x)
 
   return binary_search(A, half, double, x)
 
@@ -134,7 +134,9 @@ ii. Now do the same using a DFS
 [1,3,6,7,10,11,8,9,2,4,5]
 ```
 Describe an algorithm that could be used to find a path between two nodes of this graph. Give a high-level explanation of it and justify why you chose it
-```
+
+
+**Answer:**
 To find the path, we can use the Breadth first search and then construct the path.
 
 The algorithm consists of finding the desired element in each adjacent vertex. If it
@@ -142,22 +144,21 @@ isn't there, then queue all adjacent vertex if there is still vertices to search
 For each adjacent vertex apply the same: searching over and queueing its neighbors, excluding vertex already visited, flagged by
 visited nodes map. After searched over all neighbors vertexes then dequeue.
 The path can be reconstructed by the vertices at the queue.
-```
 
 Do the same for an algorithm which finds the shortest path
-```
+
+
+**Answer:**
 To find the shortest path, we can use, the Breadth first search path described before. Since it is a unweighted
 graph. BFS-path increments its frontier of explored vertices each iteration, adding all vertex of
 frontier on its queue, flagging the already visited. The reconstructed path is the shortest path, since the frontier is build incrementally.
 The shortest path will be stored at the queue.
-```
+
 Do the same for an algorithm which finds the shortest path going through a specific node
 
-```
+**Answer:**
 We can construct applying the shortest method path twice: first to the specific vertex, then
 appending the path of specific vertex to the end desired vertex.
-
-```
 
 <div style="page-break-after: always"></div>
 
@@ -175,28 +176,25 @@ class SimpleJobDispatcher {
 }
 ```
 
-```
+**Answer:**
 Instead of using pooling to dispatch new requested jobs, it could be used asynchronous
 dispatch, so as soon a new job is requested, it can be dispatched. Other options are
 implementation of queues. Or job schedulers, so it can be defined the frequency to
 dispatch jobs.
-```
 
 ---
 2.2 Suppose you need to develop a software that contains a database manipulated by an arbitrary set of routines. This database is also read by many other components of the software to do component-specific calculations, as the figure shows:
 Based on the architecture shown above:
 a) Describe a way that the components could be aware of any changes in the database without querying it periodically.
 
-```
+**Answer:**
 It could be used an producer-subscriber architecture, where components listen to the changes of states of the database. Then, when a change in the database occur, there is a notification to the subscribed listeners.
-```
 
 b) How would you improve solution you proposed in a) to handle concurrent access to the database?
 
-```
+**Answer:**
 Should have mutual exclusion implemented by atomic transactions on operations in the
 database, where during processing of events, the state of the database stays consistent.
-```
 
 <div style="page-break-after: always"></div>
 
@@ -250,11 +248,13 @@ int main() {
   return 0;
 }
 ```
+**Answer:**
 Bugs:
 - buff variable exists inside of the scope of the function. It should be memory allocated instead.
 
 <div style="page-break-after: always"></div>
 
+---
 3.2. Locate bugs in the following program:
 
 ```c
@@ -282,12 +282,14 @@ void cleanList(listT *myListP) {
 }
 ```
 
+**Answer:**
 Bug in freeing node before save the next ones. And segfault while accessing unallocated
 myListP.
 
 
 <div style="page-break-after: always"></div>
 
+---
 3.3. Note the performance issues with the following code
 
 ```c
@@ -312,6 +314,7 @@ int some_function(const char *string) {
   return numA;
 }
 ```
+**Answer:**
 Performance issue: the previous code iterate over the string linearly twice to count
 incidences of character 'A'. Running two nested iteration over the array has the complexity order of
 $O(n^2)$.
@@ -332,6 +335,7 @@ int some_function(const char *string) {
 
 <div style="page-break-after: always"></div>
 
+---
 3.5. Which of the following gives the memory address of the first element in array?
 ```
 (a) array [0]
@@ -346,8 +350,8 @@ pointer points to.
 ```
 (a) NULL
 (b) Other dynamically allocated memory
-(X) The same deallocated memory location     -> The memory was deallocated, but it points
-to the same location.
+(X) The same deallocated memory location     -> The memory was
+deallocated, but it points to the same location.
 (d) It points back to location it was initialized with
 ```
 ---
@@ -360,8 +364,8 @@ int main()
 ```
 (a) static variable
 (X) automatic variable --> z is a local or from the hidden keyword 'auto'.
-Which means it allocate memory automatically in that block and free it upon exit from that
-block.
+Which means it allocate memory automatically in that block and free
+it upon exit from that block.
 (c) register variable
 (d) global variable.
 ```
@@ -370,28 +374,31 @@ block.
 
 # 4. C++ and STL
 4.1. In STL, which are the main differences between a vector and a list?
-```
+
+**Answer:**
 Vectors are a data structured which implementation is analogous to arrays, because they store elements in a
 contiguous location. Whereas lists are similar to linked list, where it stores in a
 non-contiguous location. The first can access elements with constant time, but deletion
 and insertion in the mid are costly. The former realizes cheap insertion and deletions,
 but costly iteration in comparison with vectors.
-```
 
 ---
 4.2. Suppose you need to count a list of the unique words that are read from an istream.
 a) Write the prototype for the method you are going to create.
-```
+```C++
 map<string, int> *words_freq(string s);
 ```
+---
 b) Which STL structure would you use to store the words?
-```
+**Answer:**
 I would use an associative map that is a container that associates the key element pair. In this case, the key would be the unique word, and the value would be the count of this specific word.
-```
 
 <div style="page-break-after: always"></div>
 
+---
+
 c) Write the code to implement what is proposed in this problem.
+**Answer:**
 ```c++
 #include <iostream>
 #include <sstream>
@@ -424,12 +431,13 @@ return:
 ---
 
 d) If you were not using the STL container mentioned in b), would you propose another alternative STL container or even develop another container? Which? (There is no need to write program, just an explanation)
-```
+**Answer:**
 I would implement a container that is a map sortable by key. It is a usual map, but with a
 method that vectorizes its keys and its values, then reordering the pairs keys:values by
 its values. This method would abstract the extraction of most frequent words.
-```
-4.3. Consider the partial definition of the Student class below and the FindCourseName method:
+---
+4.3. Consider the partial definition of the Student class below and the
+FindCourseName method:
 ```c++
 class Student {
   // many attributes and methods here plus:
@@ -452,18 +460,19 @@ FindCourseName(std::list<Student> stu, string name) {
 a) How many unnecessary object creations/copies are done in the FindCourseName method?
 b) How would you reduce this number of copies?
 c) How would you optimize the code above?
-```
+
+**Answer:**
 a) As the method FindCourseName is passing by value, thus copying the whole list.
 b) The correct solution would be passing the list by reference:
     std::string FindCourseName ( std::list< Student > &stu, string name )
 c) To optimize the performance of finding the course of a given student name, it is
 possible to implement a map of student:courses, then the search cost would be O(log(n))
 instead of O(n).
-```
 
+---
 4.4. Remove the errors and optimize the code below.
+**Answer:**
 ```C++
-
 typedef std::vector<std::string> StringVector;
 // Const cannot be used, since we are changing the vector
 // bool myMethod(const StringVector &input, StringVector &output) {
@@ -489,6 +498,7 @@ void myMethod(StringVector &input, StringVector &output) {
 }
 ```
 
+---
 4.5 Consider the following C++ program:
 ```c++
 #include <iostream>
@@ -519,7 +529,7 @@ int main() {
 }
 ```
 What is going to be printed to the standard output?
-```
+**Answer:**
 obj[0] is an instance of ClassOne, then calculate() returns 1
 obj[1] is an instance of MyClassTwo, but its calculate() doesn't override from the base
 class, because the former isn't virtual, then calls calculate from the base class,
@@ -527,7 +537,6 @@ returning 1
 obj[2] is an instance of MyClassThree, but its calculate() doesn't override from the base
 class, because the former isn't virtual, then calls calculate from the base class,
 returning 1
-```
 
 # C++11
 5.1. Describe what happens in the following code (suppose move constructors and operators are defined in BigInt class).
@@ -538,10 +547,10 @@ void swap(BigInt& a, BigInt& b) {
   b = move (t);
 }
 ```
-```
+**Answer:**
 This function swaps the references of objects pointed by the variables a and b, using move assignment operator overload. After executed, b have the previous content of a, and vice-versa.
-```
 
+---
 5.2. Implement move constructor and operator for BigInt class. Consider the following initial description for the class:
 
 ```c++
@@ -607,9 +616,11 @@ BigInt::~BigInt() { delete[] mag_; }
 ![](./61.png)
 
 
+---
 6.2.
 
 ![](./62.png)
+**Answer:**
 This FSM is stuck in any state except 6. When in state 6, it transition to 7,
 then it stays. Demonstration:
 ```mermaid
@@ -647,7 +658,9 @@ graph LR
 
 ```
 
+---
 ![](./63.png)
+**Answer:**
 ![](./signal.png)
 ![](./signal2.png)
 
