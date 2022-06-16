@@ -45,6 +45,7 @@ While list != nil:
    reversed_list <- aux
 return reversed_list
 ```
+
 <div style="page-break-after: always"></div>
 
 Cpp implementation:
@@ -418,9 +419,19 @@ map<string, int> *wordsCounting(string text) {
   return wordCount;
 }
 ```
-Test
-string text = "In Western musical theory, a cadence (Latin cadentia, 'a falling') is the end of a phrase in which the melody or harmony creates a sense of resolution. A harmonic cadence is a progression of two or more chords that concludes a phrase, section, or piece of music. A rhythmic cadence is a characteristic rhythmic pattern that indicates the end of a phrase. A cadence is labeled like or less 'weak' or 'strong' depending on the impression of finality it gives. While cadences are usually classified by specific chord or melodic progressions, the use of such progressions does not necessarily constitute a cadence—there must be a sense of closure, as at the end of a phrase. Harmonic rhythm plays an important part in determining where a cadence occurs.";
 ```
+Test
+string text = "In Western musical theory, a cadence (Latin cadentia, 'a
+falling') is the end of a phrase in which the melody or harmony creates a sense
+of resolution. A harmonic cadence is a progression of two or more chords that
+concludes a phrase, section, or piece of music. A rhythmic cadence is a
+characteristic rhythmic pattern that indicates the end of a phrase. A cadence is
+labeled like or less 'weak' or 'strong' depending on the impression of finality
+it gives. While cadences are usually classified by specific chord or melodic
+progressions, the use of such progressions does not necessarily constitute a
+cadence—there must be a sense of closure, as at the end of a phrase. Harmonic
+rhythm plays an important part in determining where a cadence occurs.";
+
 return:
 'a':11
 'the':6
@@ -435,7 +446,9 @@ d) If you were not using the STL container mentioned in b), would you propose an
 I would implement a container that is a map sortable by key. It is a usual map, but with a
 method that vectorizes its keys and its values, then reordering the pairs keys:values by
 its values. This method would abstract the extraction of most frequent words.
+
 ---
+
 4.3. Consider the partial definition of the Student class below and the
 FindCourseName method:
 ```c++
@@ -464,13 +477,16 @@ c) How would you optimize the code above?
 **Answer:**
 a) As the method FindCourseName is passing by value, thus copying the whole list.
 b) The correct solution would be passing the list by reference:
-    std::string FindCourseName ( std::list< Student > &stu, string name )
+```
+std::string FindCourseName ( std::list< Student > &stu, string name )
+```
 c) To optimize the performance of finding the course of a given student name, it is
 possible to implement a map of student:courses, then the search cost would be O(log(n))
 instead of O(n).
 
 ---
 4.4. Remove the errors and optimize the code below.
+
 **Answer:**
 ```C++
 typedef std::vector<std::string> StringVector;
@@ -529,16 +545,17 @@ int main() {
 }
 ```
 What is going to be printed to the standard output?
+
 **Answer:**
-obj[0] is an instance of ClassOne, then calculate() returns 1
-obj[1] is an instance of MyClassTwo, but its calculate() doesn't override from the base
+- obj[0] is an instance of ClassOne, then calculate() returns 1
+- obj[1] is an instance of MyClassTwo, but its calculate() doesn't override from the base
 class, because the former isn't virtual, then calls calculate from the base class,
 returning 1
-obj[2] is an instance of MyClassThree, but its calculate() doesn't override from the base
+- obj[2] is an instance of MyClassThree, but its calculate() doesn't override from the base
 class, because the former isn't virtual, then calls calculate from the base class,
 returning 1
 
-# C++11
+# 5. C++11
 5.1. Describe what happens in the following code (suppose move constructors and operators are defined in BigInt class).
 ```c++
 void swap(BigInt& a, BigInt& b) {
@@ -547,6 +564,7 @@ void swap(BigInt& a, BigInt& b) {
   b = move (t);
 }
 ```
+
 **Answer:**
 This function swaps the references of objects pointed by the variables a and b, using move assignment operator overload. After executed, b have the previous content of a, and vice-versa.
 
